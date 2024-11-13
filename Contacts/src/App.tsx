@@ -1,13 +1,23 @@
-import { Heading, Stack, Table } from "@chakra-ui/react";
-import ThemeToggle from "./my_components/ThemeToggle";
+import { Heading, Spinner, Stack, Table, Text } from "@chakra-ui/react";
 import useUsers from "./hooks/useUsers";
+import { Status } from "./components/ui/status";
 
 const App = () => {
-  const { data: users, isLoading, isError, error } = useUsers();
+  const { data: users, isError, error, isPending } = useUsers();
+
+  if (isPending) {
+    return <Spinner></Spinner>;
+  }
+  if (isError) {
+    return (
+      <Status value="error">
+        <Text>{error.message}</Text>
+      </Status>
+    );
+  }
 
   return (
     <>
-      <ThemeToggle />
       <Stack width="full" gap="5">
         <Heading size="xl">Contacts</Heading>
         <Table.Root size="sm" variant="outline" striped>
