@@ -1,10 +1,4 @@
-import { HStack, Heading, Stack, Table } from "@chakra-ui/react";
-import {
-  PaginationItems,
-  PaginationNextTrigger,
-  PaginationPrevTrigger,
-  PaginationRoot,
-} from "@/components/ui/pagination";
+import { Heading, Stack, Table } from "@chakra-ui/react";
 import ThemeToggle from "./my_components/ThemeToggle";
 
 const App = () => {
@@ -12,13 +6,12 @@ const App = () => {
     <>
       <ThemeToggle />
       <Stack width="full" gap="5">
-        <Heading size="xl">Products</Heading>
+        <Heading size="xl">Contacts</Heading>
         <Table.Root size="sm" variant="outline" striped>
           <Table.Header>
             <Table.Row>
-              <Table.ColumnHeader>Product</Table.ColumnHeader>
-              <Table.ColumnHeader>Category</Table.ColumnHeader>
-              <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+              <Table.ColumnHeader>Name</Table.ColumnHeader>
+              <Table.ColumnHeader>Number</Table.ColumnHeader>
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -26,19 +19,10 @@ const App = () => {
               <Table.Row key={item.id}>
                 <Table.Cell>{item.name}</Table.Cell>
                 <Table.Cell>{item.category}</Table.Cell>
-                <Table.Cell textAlign="end">{item.price}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
         </Table.Root>
-
-        <PaginationRoot count={items.length * 5} pageSize={5} page={1}>
-          <HStack wrap="wrap">
-            <PaginationPrevTrigger />
-            <PaginationItems />
-            <PaginationNextTrigger />
-          </HStack>
-        </PaginationRoot>
       </Stack>
     </>
   );
