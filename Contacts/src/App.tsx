@@ -1,9 +1,17 @@
-import { Heading, Spinner, Stack, Table, Text } from "@chakra-ui/react";
+import { Flex, Heading, Spinner, Stack, Table, Text } from "@chakra-ui/react";
 import useUsers from "./hooks/useUsers";
 import { Status } from "./components/ui/status";
+import SearchInput from "./my_components/SearchInput";
+import { useState } from "react";
+import ThemeToggle from "./my_components/ThemeToggle";
 
 const App = () => {
-  const { data: users, isError, error, isPending } = useUsers();
+  const { data: contacts, isError, error, isPending } = useUsers();
+  const [searchText, setSearchText] = useState("");
+  const filteredContacts = contacts?.filter((contact) =>
+    contact.name.toLowerCase().startsWith(searchText.toLowerCase())
+  );
+  console.log(filteredContacts);
 
   if (isPending) {
     return <Spinner></Spinner>;
@@ -18,8 +26,13 @@ const App = () => {
 
   return (
     <>
-      <Stack width="full" gap="5">
-        <Heading size="xl">Contacts</Heading>
+      <Stack direction={{ base: "column" }}>
+        <Flex justify={"space-between"}>
+          <Heading size="xl">Contacts</Heading>
+          <ThemeToggle />
+        </Flex>
+
+        <SearchInput onSearch={(text) => setSearchText(text)} />
         <Table.Root size="sm" variant="outline" striped>
           <Table.Header>
             <Table.Row>
@@ -29,13 +42,21 @@ const App = () => {
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {users?.map((user) => (
-              <Table.Row key={user.id}>
-                <Table.Cell>{user.name}</Table.Cell>
-                <Table.Cell>{user.email}</Table.Cell>
-                <Table.Cell>{user.phone}</Table.Cell>
+            {filteredContacts && filteredContacts.length > 0 ? (
+              filteredContacts?.map((contact) => (
+                <Table.Row key={contact.id}>
+                  <Table.Cell>{contact.name}</Table.Cell>
+                  <Table.Cell>{contact.email}</Table.Cell>
+                  <Table.Cell>{contact.phone}</Table.Cell>
+                </Table.Row>
+              ))
+            ) : (
+              <Table.Row>
+                <Table.Cell>No Result</Table.Cell>
+                <Table.Cell>No Result</Table.Cell>
+                <Table.Cell>No Result</Table.Cell>
               </Table.Row>
-            ))}
+            )}
           </Table.Body>
         </Table.Root>
       </Stack>
