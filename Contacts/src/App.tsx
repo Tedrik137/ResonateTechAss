@@ -1,7 +1,10 @@
 import { Heading, Stack, Table } from "@chakra-ui/react";
 import ThemeToggle from "./my_components/ThemeToggle";
+import useUsers from "./hooks/useUsers";
 
 const App = () => {
+  const { data: users, isLoading, isError, error } = useUsers();
+
   return (
     <>
       <ThemeToggle />
@@ -11,14 +14,16 @@ const App = () => {
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeader>Name</Table.ColumnHeader>
+              <Table.ColumnHeader>Email</Table.ColumnHeader>
               <Table.ColumnHeader>Number</Table.ColumnHeader>
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {items.map((item) => (
-              <Table.Row key={item.id}>
-                <Table.Cell>{item.name}</Table.Cell>
-                <Table.Cell>{item.category}</Table.Cell>
+            {users?.map((user) => (
+              <Table.Row key={user.id}>
+                <Table.Cell>{user.name}</Table.Cell>
+                <Table.Cell>{user.email}</Table.Cell>
+                <Table.Cell>{user.phone}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
@@ -27,13 +32,5 @@ const App = () => {
     </>
   );
 };
-
-const items = [
-  { id: 1, name: "Laptop", category: "Electronics", price: 999.99 },
-  { id: 2, name: "Coffee Maker", category: "Home Appliances", price: 49.99 },
-  { id: 3, name: "Desk Chair", category: "Furniture", price: 150.0 },
-  { id: 4, name: "Smartphone", category: "Electronics", price: 799.99 },
-  { id: 5, name: "Headphones", category: "Accessories", price: 199.99 },
-];
 
 export default App;
