@@ -21,6 +21,7 @@ const SearchInput = ({ onSearch }: Props) => {
               onSearch(e.target.value);
             }
           }}
+          aria-label="Search Contacts..."
         />
       </InputGroup>
     </HStack>

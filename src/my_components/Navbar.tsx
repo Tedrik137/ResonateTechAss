@@ -22,6 +22,7 @@ const Navbar = ({ setSearchText }: Props) => {
         <Icon
           fontSize="50px"
           color={colorMode == "light" ? "gray.700" : "gray.100"}
+          aria-label="Contacts"
         >
           <RiContactsBook3Fill />
         </Icon>

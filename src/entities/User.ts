@@ -11,3 +11,13 @@ export default interface User {
   website: string;
   company: Company;
 }
+
+export function compare(a: User, b: User) {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+}

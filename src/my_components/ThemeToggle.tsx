@@ -23,6 +23,7 @@ const ThemeToggle = () => {
         ),
       }}
       onChange={toggleColorMode}
+      aria-label="Toggle theme"
     />
   );
 };

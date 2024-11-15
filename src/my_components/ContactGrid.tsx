@@ -26,7 +26,7 @@ const ContactGrid = ({ contact }: Props) => {
       mb={2}
       color={colorMode == "light" ? "gray.700" : "gray.100"}
     >
-      <GridItem>
+      <GridItem aria-label="Phone">
         <Flex alignItems="center" gapX={{ base: 3, xl: 2 }}>
           <Icon fontSize="lg" color="green.600">
             <MdLocalPhone />
@@ -34,7 +34,7 @@ const ContactGrid = ({ contact }: Props) => {
           {contact.phone}
         </Flex>
       </GridItem>
-      <GridItem>
+      <GridItem aria-label="Username">
         <Flex alignItems="center" gapX={{ base: 3, xl: 2 }}>
           <Icon fontSize="lg" color="yellow.600">
             <BiSolidUser />
@@ -42,7 +42,7 @@ const ContactGrid = ({ contact }: Props) => {
           {contact.username}
         </Flex>
       </GridItem>
-      <GridItem>
+      <GridItem aria-label="Email">
         <Flex alignItems="center" gapX={{ base: 3, xl: 2 }}>
           <Icon fontSize="lg" color="cyan.600">
             <MdEmail />
@@ -50,7 +50,7 @@ const ContactGrid = ({ contact }: Props) => {
           {contact.email}
         </Flex>
       </GridItem>
-      <GridItem>
+      <GridItem aria-label="Address">
         <Flex alignItems="center" gapX={{ base: 3, xl: 2 }}>
           <Icon fontSize="lg" color="red.400">
             <FaHouse />
@@ -58,7 +58,7 @@ const ContactGrid = ({ contact }: Props) => {
           {extractAddress(contact.address)}
         </Flex>
       </GridItem>
-      <GridItem>
+      <GridItem aria-label="Website">
         <Flex alignItems="center" gapX={{ base: 3, xl: 2 }}>
           <Icon fontSize="lg" color="purple.600">
             <FaGlobe />
@@ -66,7 +66,7 @@ const ContactGrid = ({ contact }: Props) => {
           {contact.website}
         </Flex>
       </GridItem>
-      <GridItem>
+      <GridItem aria-label="Company">
         <Flex alignItems="center" gapX={{ base: 3, xl: 2 }}>
           <Icon fontSize="lg" color="orange.800">
             <HiBuildingOffice />
